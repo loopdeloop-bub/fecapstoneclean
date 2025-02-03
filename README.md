@@ -13,7 +13,7 @@ These are screenshots of the working project on a laptop screen resolution. Uses
 
 # Specials
 Uses Carousel component from react boostrap to auto display 3 specials
-![Specials](./images/specials Carousel.png)
+![Specials](./images/SpecialsCarousel.png)
 
 # Bookings
 Reservations page
