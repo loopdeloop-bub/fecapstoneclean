@@ -1,5 +1,5 @@
 # React Front End Developer Capstone Project
-These are screenshots of the working project on a laptop screen resolution. Uses react-bootstrap and react-icons.
+These are screenshots of the working project on a laptop screen resolution. Uses react-bootstrap and react-icons. App.css has some demonstration of CSS before I moved to using react-bootstrap based components.
 
 # Heuristics Evaluation
 [Heuristics Evaluation](./Heuristics-FilledIn.pdf)
