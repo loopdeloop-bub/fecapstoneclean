@@ -50,36 +50,16 @@ export default function Bookings(props) {
                 {(props) => (
                 <Form>
                     <Container fluid>
-                    <div className='form-group'>
-                        <Row>
-                            <Col className='m-2 p-2'>
-                        First Name</Col><Col className='m-2 p-2'> <Field name="firstName" placeholder='John'/>
-                        {props.errors.firstName && props.touched.firstName ? (
-                            <div className='text-danger'>{props.errors.firstName}</div>
-                        ) : null}</Col>
-                        </Row>
-                        <Row>
-                        <Col className='m-2 p-2'>
-                            Last Name</Col><Col><Field name="lastName" placeholder='Doe'/>
-                        {props.errors.lastName && props.touched.lastName ? (<div className='text-danger'>{props.errors.lastName}</div>) : null}
-                        </Col>
-                        </Row>
-                        <Row>
-                        <Col className='m-2 p-2'>email: </Col><Col className='m-2 p-2'><Field name="email" type="email" placeholder='jd@nowhere.com'/>
-                        {props.errors.email && props.touched.email ? <div className='text-danger'>{props.errors.email}</div> : null}
-                        </Col>
-                        </Row>
-                    </div>
-                    <div className='form-group'>
+                    <div className='form-group border-bottom border-secondary'>
                     <Row>
-                        <Col className='m-2 p-2'>Date: </Col>
-                        <Col className='m-2 p-2'><Field data-testid="resDate" name="resDate" type="Date" onChange={ (evt) => {console.log(props);props.handleChange(evt);resDateChanged(evt);}}/>
+                        <Col className='m-2 p-2'><label for="resDate">Reservation Date</label></Col>
+                        <Col className='m-2 p-2'><Field data-testid="resDate" name="resDate" type="Date" required onChange={ (evt) => {props.handleChange(evt);resDateChanged(evt);}}/>
                         {props.errors.resDate && props.touched.resDate ? <div data-testid="resDateError" className='text-danger'>{props.errors.resDate}</div> : null}
                         </Col>
-                        </Row>
-                        <Row>
+                    </Row>
+                    <Row>
                         <Col className='m-2 p-2'>
-                        Time</Col><Col className='m-2 p-2'><Field data-testid="resTime" name="resTime" as="select" >
+                        <label for="resDate">Reservation Time</label></Col><Col className='m-2 p-2'><Field data-testid="resTime" required name="resTime" as="select" >
                             <option></option>
                             {availableTimings.filter( item => item.status !== 2).map(item => {
                                     return (<option key={item.time}>{item.time}</option>);
@@ -88,16 +68,38 @@ export default function Bookings(props) {
                         </Field>
                         {props.errors.resTime && props.touched.resTime ? <div className='text-danger'>{props.errors.resTime}</div> : null}
                         </Col>
+                    </Row>
+                    </div>
+                    <div className='form-group border-bottom border-secondary'>
+                        <Row>
+                            <Col className='m-2 p-2'>
+                        <label for="firstName">First Name</label></Col><Col className='m-2 p-2'> <Field name="firstName" required placeholder='John'/>
+                        {props.errors.firstName && props.touched.firstName ? (
+                            <div className='text-danger'>{props.errors.firstName}</div>
+                        ) : null}</Col>
                         </Row>
                         <Row>
                         <Col className='m-2 p-2'>
-                        Guest Count</Col><Col className='m-2 p-2'><Field name="guests" type="number" placeholder='2' aria-valuenow="2" aria-valuemin="0" aria-valuemax="9"/>
+                            <label for="lastName">Last Name</label></Col><Col><Field name="lastName" required placeholder='Doe'/>
+                        {props.errors.lastName && props.touched.lastName ? (<div className='text-danger'>{props.errors.lastName}</div>) : null}
+                        </Col>
+                        </Row>
+                        <Row>
+                        <Col className='m-2 p-2'><label for="email">email</label></Col><Col className='m-2 p-2'><Field name="email" type="email" required placeholder='jd@nowhere.com'/>
+                        {props.errors.email && props.touched.email ? <div className='text-danger'>{props.errors.email}</div> : null}
+                        </Col>
+                        </Row>
+                    </div>
+                    <div className='form-group'>
+                    <Row>
+                        <Col className='m-2 p-2'>
+                        <label for="guests">Guest Count</label></Col><Col className='m-2 p-2'><Field name="guests" type="number" placeholder='2' min='2' max='9' aria-valuenow="2" aria-valuemin="0" aria-valuemax="9"/>
                         {props.errors.guests && props.touched.guests ? <div className='text-danger'>{props.errors.guests}</div> : null}
                         </Col>
                         </Row>
                         <Row>
                         <Col className='m-2 p-2'>
-                        Occasion</Col><Col className='m-2 p-2'><Field name="occasion" as="select">
+                        <label for="resDate">Occasion</label></Col><Col className='m-2 p-2'><Field name="occasion" as="select">
                             <option></option>
                             <option>Birthday</option>
                             <option>Anniversary</option>
@@ -109,7 +111,7 @@ export default function Bookings(props) {
                     </div>
                     <Row>
                     <p className='form-group m-2 p-2'>
-                        <button className="btn btn-primary text-center" data-testid="bookingsubmit" type="submit" onSubmit={formSubmit} disabled={props.isSubmitting || !props.isValid}>Submit your Reservation</button>
+                        <button aria-label="Submit Reservation" className="btn btn-primary text-center" data-testid="bookingsubmit" type="submit" onSubmit={formSubmit} disabled={props.isSubmitting || !props.isValid}>Submit your Reservation</button>
                     </p>
                     </Row>
                     </Container>
